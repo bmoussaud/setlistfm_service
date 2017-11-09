@@ -1,0 +1,177 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2017-10-11T08:52:02",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "application/json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Accept-Language": [
+            "en"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "python-requests/2.18.4"
+          ],
+          "x-api-key ": [
+            "4b15bd76-3455-4f06-b606-293848fbad49"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://api.setlist.fm/rest/1.0/setlist/6be2ce06"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAAA6xXy27jNhTd5ytuvag7qGnLsixL2SUTuxl0kgYZD7IYdEGJV5EQiTRIKq4xyAd00//od+THSsryS85DLWrAgMT7fh1efT8BgE7GOnAKHT9CN0bH7/Sq00eUKhP805oYeW4cRm5Nw0fk+oJqrGhDhzghcZ3hpCbnVOmvC2boa2FLsixDd+74p65zOvb6juP8bP5OLUKlzpS23N/tuz0qoo1j48RLnHhMMAmReKETE4o4IqET4oSiH7k0WquxYrpYi01GY9+bbI85LdbeXqGmeZ7FdCeihNTXb9BZpqjx5r6k2mSk4toRS5lXJ6nWC3U6GCyXy75CnZtw+kkxqB/VoNjoJaOI+YETB/1UF3nH6nnapJyXeJCDOgNuxMZJMHE7x+GcxbGQl0JjruBMIt9zO870al/bvsIwCMbOZMt7oPKGykwdkJTe1Pr5rxwJQzKTlMd4zPRRsNqv4IAYCyGZaniz7pWq6l7QD8Yjb9hrUAW/t2S3P/KCYEd7OtRdci2boa4ptTez205D8zbaOpI93ScNG++VuCrbgNpCpFUhCLWFIAubR5JU+smmhEdF16KUBzXfenYnZM7uMokM5pZpT8hYP0imPbDv3w6KrersfWvmZWtiniJMY1M5tQKRwC8iZ81EabqoeLUssddMrwGJ47TD/vDSoY/eJBkTSsceMU9Iggl6JIoCmoRDGiasaRL2p3jieEPnmL6NYMp5JuBKSJnFguMLqg6ne8PYg0ryBf63pn3H1Xbs0VohxcYscUfMp8FotOuD7e9pv79fLdkllWxZNcUn0/XNAA7K9e/0dVqxn2mD7j24zRT+0E7iC+ID/AgXqIy7q3Yy81SK8j4FbfrzGm2XtRKbUYagBZznNH5oJ3ItljBPqYY77Eo0XtKjCch4IireZaZTwD80cmbSbzqU5QhMlgUokQuoyAbjocAiMrennSgbQER5y+ReUf71+iHjr7uQZ4/GJEalbpkRIeEuFUXlyDka5+Yiz1U74UtqohIcZqY9XvUoMfrE0uQjWsGvmbSlvhVRV1U5aWsI80WOSjWNtAEYNmIs8FlC3GQ8IR4NJyQYOg5hThgOzZUySnznLYAZeeHQfwNgLjJaCM7g8rgzoIku7/D+v8jC1sZIaozZ68WncYL/GVZmJeYtm1SYNjfYI2CW27N2IEBNg5Qa5gaW2kn8xlsyXpltE6UdtptysbAX454Y/H7ykoIOcnNbV/LDgx3m3Rtzlt2nupoIuLPzXs1GS6TRacbvYZorhCuqjdMtx2PKbYBfDIwUlL+NTl17o5uVZmUGcspZhUFG0GyCXRClvS9eTM76qV4uthqPxxkyHud96E5XuEG3c0zN1oCy24PuZ1TwMaXFQpHnP/OVev4bVReM39A94wb/U1QZhZ9uSrMIm0zMEXX6oVt/ArTr+90ePbCfFe+tXZuPmnounv4BAAD//wMArT61DvIMAAA=",
+          "encoding": null
+        },
+        "headers": {
+          "Cache-Control": [
+            "no-transform, max-age=60"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Wed, 11 Oct 2017 08:51:59 GMT"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept-Encoding,Accept,Accept-Language"
+          ],
+          "Via": [
+            "1.1 1eb4c4d1a01293f27e472fcc60f7102d.cloudfront.net (CloudFront), 1.1 308a8a99ab3c0b587dfb21d7b1c97f8b.cloudfront.net (CloudFront)"
+          ],
+          "X-Amz-Cf-Id": [
+            "rSq94OjsR9mPy8B75sFZkb2x8I2wGUq2yFmIw7iedjb9PnQyvriKQQ=="
+          ],
+          "X-Cache": [
+            "Miss from cloudfront"
+          ],
+          "x-amzn-Remapped-Connection": [
+            "keep-alive"
+          ],
+          "x-amzn-Remapped-Content-Length": [
+            "3314"
+          ],
+          "x-amzn-Remapped-Date": [
+            "Wed, 11 Oct 2017 08:51:59 GMT"
+          ],
+          "x-amzn-RequestId": [
+            "71553689-ae61-11e7-bcc5-45aa0f4de4d3"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.setlist.fm/rest/1.0/setlist/6be2ce06"
+      }
+    },
+    {
+      "recorded_at": "2017-10-11T08:52:02",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "application/json"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Accept-Language": [
+            "en"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "python-requests/2.18.4"
+          ],
+          "x-api-key ": [
+            "4b15bd76-3455-4f06-b606-293848fbad49"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://api.setlist.fm/rest/1.0/search/setlists?artistName=metallica&sort=sortName"
+      },
+      "response": {
+        "body": {
+          "base64_string": "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",
+          "encoding": null
+        },
+        "headers": {
+          "Cache-Control": [
+            "no-transform, max-age=60"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Wed, 11 Oct 2017 08:51:59 GMT"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Vary": [
+            "Accept-Encoding,Accept,Accept-Language"
+          ],
+          "Via": [
+            "1.1 940b367f846b05ee5d0f25268ff80731.cloudfront.net (CloudFront), 1.1 308a8a99ab3c0b587dfb21d7b1c97f8b.cloudfront.net (CloudFront)"
+          ],
+          "X-Amz-Cf-Id": [
+            "Cf4H-4qX2fIrY5xxf3Sd_4ifNwrr3h-LEK2_rsFqfhFH0FS-ryzrUg=="
+          ],
+          "X-Cache": [
+            "Miss from cloudfront"
+          ],
+          "x-amzn-Remapped-Connection": [
+            "keep-alive"
+          ],
+          "x-amzn-Remapped-Content-Length": [
+            "93333"
+          ],
+          "x-amzn-Remapped-Date": [
+            "Wed, 11 Oct 2017 08:51:59 GMT"
+          ],
+          "x-amzn-RequestId": [
+            "716ba4d1-ae61-11e7-bd76-45e82e969a17"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://api.setlist.fm/rest/1.0/search/setlists?artistName=metallica&sort=sortName"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.0"
+}
