@@ -14,8 +14,6 @@ SETLIST_FM_API_KEY_ = app.config['SETLIST_FM_API_KEY']
 # sample code: https://gist.github.com/shivam5992/8451692
 # from https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 
-
-
 class SetList:
     def __init__(self, json):
         self.json = json
