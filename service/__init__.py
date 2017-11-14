@@ -106,8 +106,11 @@ tasks = [
 
 @app.route('/setlist/api/1.0/query/artist/<string:artist>', methods=['GET'])
 def query_setlists_by_artist(artist):
-    result = SetListQuery(SETLIST_FM_API_KEY_).query_artist(artist)
-    return jsonify({'setlists': result})
+    try:
+        result = SetListQuery(SETLIST_FM_API_KEY_).query_artist(artist)
+        return jsonify({'setlists': result})
+    except:
+        abort(500)
 
 
 @app.route('/setlist/api/1.0/<string:setlist_id>', methods=['GET'])
@@ -147,6 +150,10 @@ def delete_task(task_id):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found', 'message': error.description}), 404)
+
+@app.errorhandler(500)
+def not_found(error):
+    return make_response(jsonify({'error': 'Technical error.', 'message': error.description}), 500)
 
 
 @app.route('/todo/api/v1.0/tasks', methods=['POST'])
