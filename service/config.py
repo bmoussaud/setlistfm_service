@@ -5,7 +5,6 @@ import os
 class BaseConfig(object):
     DEBUG = False
     TESTING = False
-    SECRET_KEY = 'b6b85744de85640f47976b784aa335e9af9a542b7d381e88'
     LOGGING_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     LOGGING_LOCATION = 'setlistfm_service.log'
     LOGGING_LEVEL = logging.DEBUG
@@ -18,13 +17,13 @@ class BaseConfig(object):
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
     TESTING = False
-    SECRET_KEY = '217c76c9032c421e62a18960e4930f753d24ad75bc5b0e07'
+
 
 
 class TestingConfig(BaseConfig):
     DEBUG = False
     TESTING = True
-    SECRET_KEY = '3eab94077f627bb9b27afc24e693631d52fe3c44af20f1f5'
+
 
 
 config = {

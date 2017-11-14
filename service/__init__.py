@@ -1,6 +1,6 @@
 #!flask/bin/python
 import requests
-from flask import Flask, jsonify, abort, make_response, request, url_for
+from flask import Flask, jsonify, make_response, url_for
 
 from service.config import configure_app
 from service.utils import get_instance_folder_path
@@ -9,6 +9,11 @@ app = Flask(__name__, instance_path=get_instance_folder_path(),
             instance_relative_config=True)
 configure_app(app)
 SETLIST_FM_API_KEY_ = app.config['SETLIST_FM_API_KEY']
+
+
+# sample code: https://gist.github.com/shivam5992/8451692
+# from https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+
 
 
 class SetList:
@@ -77,7 +82,6 @@ class SetListQuery:
         payload = {'artistName': artist, 'sort': 'sortName'}
         r = self._session.get('{0}/search/setlists'.format(setlist_api), params=payload, headers=headers)
         data = r.json()
-
         return [SetList(setlist).bind() for setlist in data['setlist']]
 
     def query_id(self, setlist_id):
@@ -88,99 +92,14 @@ class SetListQuery:
         return SetList(data).bind()
 
 
-tasks = [
-    {
-        'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
-        'done': False
-    }
-]
-
-
-@app.route('/setlist/api/1.0/query/artist/<string:artist>', methods=['GET'])
-def query_setlists_by_artist(artist):
-    try:
-        result = SetListQuery(SETLIST_FM_API_KEY_).query_artist(artist)
-        return jsonify({'setlists': result})
-    except:
-        abort(500)
-
-
-@app.route('/setlist/api/1.0/<string:setlist_id>', methods=['GET'])
-def query_setlists_by_id(setlist_id):
-    result = SetListQuery(SETLIST_FM_API_KEY_).query_id(setlist_id)
-    return jsonify({'setlist': result})
-
-
-@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['PUT'])
-def update_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
-        abort(404)
-    if not request.json:
-        abort(400)
-    if 'title' in request.json and type(request.json['title']) != unicode:
-        abort(400)
-    if 'description' in request.json and type(request.json['description']) is not unicode:
-        abort(400)
-    if 'done' in request.json and type(request.json['done']) is not bool:
-        abort(400)
-    task[0]['title'] = request.json.get('title', task[0]['title'])
-    task[0]['description'] = request.json.get('description', task[0]['description'])
-    task[0]['done'] = request.json.get('done', task[0]['done'])
-    return jsonify({'task': task[0]})
-
-
-@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['DELETE'])
-def delete_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
-        abort(404)
-    tasks.remove(task[0])
-    return jsonify({'result': True})
-
-
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found', 'message': error.description}), 404)
 
+
 @app.errorhandler(500)
-def not_found(error):
+def tech_error(error):
     return make_response(jsonify({'error': 'Technical error.', 'message': error.description}), 500)
-
-
-@app.route('/todo/api/v1.0/tasks', methods=['POST'])
-def create_task():
-    if not request.json or not 'title' in request.json:
-        abort(400)
-    task = {
-        'id': tasks[-1]['id'] + 1,
-        'title': request.json['title'],
-        'description': request.json.get('description', ""),
-        'done': False
-    }
-    tasks.append(task)
-    return jsonify({'task': task}), 201
-
-
-@app.route('/todo/api/v1.0/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify({'tasks': [make_public_task(task) for task in tasks]})
-
-
-@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET'])
-def get_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
-        abort(404, '{0} does not exist'.format(task_id))
-    return jsonify({'task': task[0]})
 
 
 def make_public_task(task):
