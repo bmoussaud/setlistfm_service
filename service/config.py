@@ -10,7 +10,8 @@ class BaseConfig(object):
     LOGGING_LOCATION = 'setlistfm_service.log'
     LOGGING_LEVEL = logging.DEBUG
     BOOTSTRAP_SERVE_LOCAL = False
-    PORT = 6001
+    SETLIST_PORT = 6001
+    SETLIST_HOST = '0.0.0.0'
     SETLIST_FM_API_KEY = 'EMPTY_SETLIST_FM_API_KEY'
 
 

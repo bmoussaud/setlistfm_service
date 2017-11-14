@@ -71,4 +71,5 @@ spotifysetlist/instance/*
 xl/
 *.log
 **/*.log
+local.setlist_fm.cfg
 

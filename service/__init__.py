@@ -109,6 +109,7 @@ def query_setlists_by_artist(artist):
     result = SetListQuery(SETLIST_FM_API_KEY_).query_artist(artist)
     return jsonify({'setlists': result})
 
+
 @app.route('/setlist/api/1.0/<string:setlist_id>', methods=['GET'])
 def query_setlists_by_id(setlist_id):
     result = SetListQuery(SETLIST_FM_API_KEY_).query_id(setlist_id)
@@ -186,4 +187,4 @@ def make_public_task(task):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host=app.config['SETLIST_HOST'], port=app.config['SETLIST_PORT'])
