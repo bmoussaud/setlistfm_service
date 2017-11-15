@@ -1,8 +1,8 @@
 #!flask/bin/python
-import requests
-from flask import Flask, jsonify, make_response, url_for
+from flask import Flask, jsonify, make_response, url_for, abort
 
 from service.config import configure_app
+from service.setlist import SetListQuery
 from service.utils import get_instance_folder_path
 
 app = Flask(__name__, instance_path=get_instance_folder_path(),
@@ -14,6 +14,20 @@ SETLIST_FM_API_KEY_ = app.config['SETLIST_FM_API_KEY']
 # sample code: https://gist.github.com/shivam5992/8451692
 # from https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 # flask resources https://github.com/miguelgrinberg
+
+@app.route('/setlist/api/1.0/query/artist/<string:artist>', methods=['GET'])
+def query_setlists_by_artist(artist):
+    try:
+        result = SetListQuery(SETLIST_FM_API_KEY_).query_artist(artist)
+        return jsonify({'setlists': result})
+    except:
+        abort(500)
+
+
+@app.route('/setlist/api/1.0/<string:setlist_id>', methods=['GET'])
+def get_setlist_by_id(setlist_id):
+    result = SetListQuery(SETLIST_FM_API_KEY_).query_id(setlist_id)
+    return jsonify({'setlist': result})
 
 
 @app.errorhandler(404)

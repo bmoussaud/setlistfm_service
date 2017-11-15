@@ -1,3 +1,5 @@
+import requests
+
 
 class SetList:
     def __init__(self, json):
