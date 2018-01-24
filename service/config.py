@@ -39,6 +39,7 @@ def configure_app(app):
     app.config.from_pyfile('config.cfg', silent=True)
     print('SERVICE_SETLIST_CONFIG_FILE={0}'.format(os.environ.get('SERVICE_SETLIST_CONFIG_FILE')))
     app.config.from_envvar('SERVICE_SETLIST_CONFIG_FILE', silent=True)
+
     # Configure logging
     handler = logging.FileHandler(app.config['LOGGING_LOCATION'])
     handler.setLevel(app.config['LOGGING_LEVEL'])

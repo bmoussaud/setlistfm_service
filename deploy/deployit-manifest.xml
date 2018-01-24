@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="1516812451" application="setlistfm-service">
+    <deployables>
+        <openshift.RouteSpec name="/setlistfm.route">
+            <routeName>setlist</routeName>
+            <targetPort>web</targetPort>
+            <serviceName>setlist-fm-service</serviceName>
+        </openshift.RouteSpec>
+
+        <k8s.ServiceSpec name="/setlist_fm.service">
+            <serviceName>setlist-fm-service</serviceName>
+            <serviceType>NodePort</serviceType>
+            <selectors>
+                <entry key="app">setlistfm</entry>
+            </selectors>
+            <ports>
+                <k8s.ServicePortSpec name="/setlist_fm.service/web">
+                    <nodePort>31256</nodePort>
+                    <port>5000</port>
+                </k8s.ServicePortSpec>
+            </ports>
+        </k8s.ServiceSpec>
+
+        <k8s.ConfigMapSpec name="/setlistfm.conf">
+            <configMapName>setlistfm.conf</configMapName>
+            <propertyFiles>
+                <k8s.ConfigMapFileSpec name="/setlist_fm.configuration/local.setlist_fm.cfg"
+                                       file="configuration/local.setlist_fm.cfg">
+                    <scanPlaceholders>true</scanPlaceholders>
+                    <!--
+                    <placeholders>
+                        <value>logLevel</value>
+                        <value>logFilePath</value>
+                    </placeholders>
+                    -->
+                </k8s.ConfigMapFileSpec>
+            </propertyFiles>
+        </k8s.ConfigMapSpec>
+
+
+        <k8s.DeploymentSpec name="/setlistfm">
+            <containers>
+                <k8s.ContainerSpec name="/setlistfm/setlistfm">
+                    <image>bmoussaud/setlistfm_service:1516812451</image>
+                    <ports>
+                        <k8s.ContainerPortSpec name="/setlistfm/setlistfm/web">
+                            <containerPort>5000</containerPort>
+                        </k8s.ContainerPortSpec>
+                    </ports>
+
+                    <volumeBindings>
+                        <k8s.MountedVolumeSpec name="/setlistfm/setlistfm/configuration.volume">
+                            <volumeName>configuration</volumeName>
+                            <mountPath>/home/flask/configuration</mountPath>
+                            <readOnly>False</readOnly>
+                        </k8s.MountedVolumeSpec>
+                    </volumeBindings>
+
+                    <envVars>
+                        <k8s.envVar.KeyValueSpec name="/setlistfm/setlistfm/env">
+                            <properties>
+                                <entry key="SERVICE_SETLIST_CONFIG_FILE">/home/flask/configuration/local.setlist_fm.cfg</entry>
+                                <entry key="USERNAME">flask</entry> <!-- else KeyError: 'getpwuid(): uid not found: 1000080000' File "/usr/local/lib/python3.6/getpass.py", line 169, in getuser -->
+                            </properties>
+                        </k8s.envVar.KeyValueSpec>
+                    </envVars>
+
+                </k8s.ContainerSpec>
+            </containers>
+            <volumes>
+                <k8s.VolumeSpec name="/setlistfm/configvolume">
+                    <volumeName>configuration</volumeName>
+                    <volumeType>configMap</volumeType>
+                    <properties>
+                        <entry key="name">setlistfm.conf</entry>
+                    </properties>
+                </k8s.VolumeSpec>
+            </volumes>
+            <labels>
+                <entry key="app">setlistfm</entry>
+            </labels>
+            <matchLabels>
+                <entry key="app">setlistfm</entry>
+            </matchLabels>
+        </k8s.DeploymentSpec>
+
+        <smoketest.HttpRequestTest name="setlist fm smoke test">
+            <url>http://setlist-spotisetlist.192.168.64.2.nip.io/setlist/api/1.0/query/artist/iam</url>
+            <expectedResponseText>IAM</expectedResponseText>
+        </smoketest.HttpRequestTest>
+
+    </deployables>
+</udm.DeploymentPackage>
