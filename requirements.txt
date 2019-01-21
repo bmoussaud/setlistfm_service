@@ -1,4 +1,4 @@
-requests==2.18.4
+requests>=2.20.0
 dominate==2.1.16
 Flask==0.12.2
 Flask-Bootstrap==3.3.7.1
